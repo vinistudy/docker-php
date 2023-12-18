@@ -75,6 +75,7 @@ services:
     privileged: false
     volumes:
       - ./conf/redis/redis.conf:/etc/redis/redis.conf
+      - ${LOG_DIR}/redis:/logs
       - ${DATA_DIR}/redis:/data
     ports:
       - ${REDIS_PORT}:6379
@@ -82,7 +83,7 @@ services:
       - TZ:${TZ}
     networks:
       - default
-    command: redis-server /etc/redis/redis.conf
+    command: redis-server /etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}
 
 networks:
   default:
