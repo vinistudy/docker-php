@@ -85,6 +85,20 @@ services:
       - default
     command: redis-server /etc/redis/redis.conf --requirepass ${REDIS_PASSWORD}
 
+  node:
+    build:
+      context: ./service/node
+    container_name: node
+    restart: always
+    privileged: true
+    ports:
+      3000:3000
+    volumes:
+      - ${SOURCE_DIR}:/www/:rw
+      - ${LOG_DIR}/node:/var/log/node
+    environment:
+      - TZ:${TZ}
+
 networks:
   default:
     driver: bridge
