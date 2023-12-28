@@ -29,6 +29,7 @@ services:
       args:
         PHP_IMAGE: php:8.3-fpm
         PHP_EXTENSIONS: redis,gd,exif
+    image: xiangrong-php:8.3
     container_name: php8.3
     restart: always
     privileged: true
@@ -90,12 +91,12 @@ services:
       context: ./service/node
       args:
         NODE_IMAGE: node:20
-    image: node:20
+    image: xiangrong-node:20
     container_name: node
     restart: always
     privileged: true
     ports:
-      9001:9000
+      - 9001:9000
     volumes:
       - ${SOURCE_DIR}:/www/
       - ${LOG_DIR}/node:/var/log/node

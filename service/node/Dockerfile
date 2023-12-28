@@ -7,9 +7,9 @@ FROM ${NODE_IMAGE}
 WORKDIR /www/openai-proxy
 
 # 安装项目依赖
-RUN npm install
+# RUN npm install
 
-RUN npm install -g pm2
+# RUN npm install -g pm2
 
 # 暴露应用程序运行的端口（根据你的应用程序需要调整）
 EXPOSE 9000
