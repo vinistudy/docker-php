@@ -88,13 +88,16 @@ services:
   node:
     build:
       context: ./service/node
+      args:
+        NODE_IMAGE: node:20
+    image: node:20
     container_name: node
     restart: always
     privileged: true
     ports:
-      3000:3000
+      9001:9000
     volumes:
-      - ${SOURCE_DIR}:/www/:rw
+      - ${SOURCE_DIR}:/www/
       - ${LOG_DIR}/node:/var/log/node
     environment:
       - TZ:${TZ}
